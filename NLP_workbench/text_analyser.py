@@ -1,11 +1,13 @@
 from collections import Counter
+from textblob import TextBlob
 
 
 class TextAnalyser:
     def __init__(self):
         pass
 
-    def word_count(self, text):
+    @staticmethod
+    def word_count(text):
         """
         Zählt die Wörter im Text.
 
@@ -13,7 +15,8 @@ class TextAnalyser:
         """
         return len(text)
 
-    def search_substring(self, text, substring):
+    @staticmethod
+    def search_substring(text, substring):
         """
         Sucht nach einem Substring in den Wörtern des Textes und gibt die Indizes zurück.
 
@@ -22,7 +25,8 @@ class TextAnalyser:
         """
         return [i for i, word in enumerate(text) if substring in word]
 
-    def most_common_words(self, text, n):
+    @staticmethod
+    def most_common_words(text, n):
         """
         Bestimmt die n häufigsten Wörter im Text.
 
@@ -32,7 +36,8 @@ class TextAnalyser:
         word_counts = Counter(text)
         return word_counts.most_common(n)
 
-    def word_frequency(self, text, word):
+    @staticmethod
+    def word_frequency(text, word):
         """
         Berechnet die Frequenz eines bestimmten Wortes im Text.
 
@@ -41,7 +46,8 @@ class TextAnalyser:
         """
         return text.count(word) / len(text)
 
-    def average_word_length(self, text):
+    @staticmethod
+    def average_word_length(text):
         """
         Berechnet die durchschnittliche Wortlänge im Text.
 
@@ -50,7 +56,8 @@ class TextAnalyser:
         word_lengths = [len(word) for word in text]
         return sum(word_lengths) / len(word_lengths)
 
-    def sentence_count(self, text):
+    @staticmethod
+    def sentence_count(text):
         """
         Zählt die Sätze im Text, basierend auf Punktuation (., !, ?).
 
@@ -58,9 +65,24 @@ class TextAnalyser:
         """
         return sum(text.count(punct) for punct in '.!?')
 
+    @staticmethod
+    def sentiment_analysis(text: str):
+        """
+        Führt eine Sentimentanalyse des gegebenen Textes durch und gibt die Polarität und Subjektivität zurück.
+
+        :param text: Der Text, der analysiert werden soll.
+        :return: Ein Dictionary mit Polarität und Subjektivität des Textes.
+        """
+        if isinstance(text, list):
+            text = ' '.join(text)
+
+        analysis = TextBlob(text)
+        sentiment = analysis.sentiment
+        return {"polarity": sentiment.polarity, "subjectivity": sentiment.subjectivity}
+
 
 if __name__ == '__main__':
-    text = ["This", "is", "a", "test", "text", ".", "It", "is", "a", "test", "text", "."]
+    text = ["This", "is", "a", "good", "test", "text", ".", "It", "is", "a", "test", "text", "."]
     ta = TextAnalyser()
     print(ta.word_count(text))
     print(ta.search_substring(text, "is"))
@@ -68,3 +90,4 @@ if __name__ == '__main__':
     print(ta.word_frequency(text, "is"))
     print(ta.average_word_length(text))
     print(ta.sentence_count(text))
+    print(ta.sentiment_analysis(text))
