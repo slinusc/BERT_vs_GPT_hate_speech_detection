@@ -4,10 +4,11 @@ import nltk
 nltk.download('punkt')
 nltk.download('stopwords')
 nltk.download('wordnet')
+nltk.download('words')
 
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
-from nltk.stem import WordNetLemmatizer
+from nltk.stem import WordNetLemmatizer, PorterStemmer
 
 
 class TextPreprocessing:
@@ -23,7 +24,9 @@ class TextPreprocessing:
 
     def __init__(self):
         self.stops = set(stopwords.words('english'))
+        self.dictionary = set(nltk.corpus.words.words())
         self.lemmatizer = WordNetLemmatizer()
+        self.stemmer = PorterStemmer()
 
     def lower_text(self, text):
         """
@@ -74,8 +77,27 @@ class TextPreprocessing:
         """
         return [self.lemmatizer.lemmatize(word) for word in text]
 
+    def stemming(self, text: list):
+        """
+        Diese Methode führt das Stemming auf den Text aus, wobei die Wörter auf ihren Wortstamm reduziert werden. Ist
+        per Default deaktiviert, da Lemmatisierung in der Regel bessere Ergebnisse liefert. Stemming kann jedoch
+        in manchen Fällen sinnvoll sein, gerade in Performance-sensitiven Anwendungen.
+        :param text:
+        :return:
+        """
+        return [self.stemmer.stem(word) for word in text]
+
+
+    def check_if_valid_word(self, text: list):
+        """
+        Diese Methode prüft, ob ein Wort ein gültiges Wort ist.
+        :param text:
+        :return:
+        """
+        return [word for word in text if word in self.dictionary]
+
     def preprocess_text(self, text, lower_case=True, remove_special_chars=True, remove_punctuation=True,
-                        remove_stopwords=True, lemmatization=False):
+                        remove_stopwords=True, lemmatization=True, stemming=False, check_valid_word=False):
         """
         Diese Methode führt die Vorverarbeitung auf den Text aus.
         :param text:
@@ -95,6 +117,11 @@ class TextPreprocessing:
             text = self.remove_stopwords(text)
         if lemmatization:
             text = self.lemmatization(text)
+        if stemming:
+            text = self.stemming(text)
+        if check_valid_word:
+            text = self.check_if_valid_word(text)
+
         return text
 
 
