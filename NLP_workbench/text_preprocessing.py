@@ -29,7 +29,8 @@ class TextPreprocessing:
         self.lemmatizer = WordNetLemmatizer()
         self.stemmer = PorterStemmer()
 
-    def lower_text(self, text):
+    @staticmethod
+    def lower_text(text):
         """
         Diese Methode wandelt den Text in Kleinbuchstaben um.
         :param text:
@@ -37,7 +38,8 @@ class TextPreprocessing:
         """
         return text.lower()
 
-    def tokenize_text(self, text):
+    @staticmethod
+    def tokenize_text(text):
         """
         Diese Methode tokenisiert den Text. Dazu wird der Text in Wörter zerlegt und in Kleinbuchstaben umgewandelt.
         :param text:
@@ -45,7 +47,8 @@ class TextPreprocessing:
         """
         return word_tokenize(text)
 
-    def remove_special_chars(self, text):
+    @staticmethod
+    def remove_special_chars(text):
         """
         Diese Methode entfernt Sonderzeichen aus dem Text.
         :param text:
@@ -53,7 +56,8 @@ class TextPreprocessing:
         """
         return re.sub(r'[^a-zA-Z0-9\s]', '', text)
 
-    def remove_punctuation(self, text):
+    @staticmethod
+    def remove_punctuation(text):
         """
         Diese Methode entfernt Satzzeichen aus dem Text.
         :param text:
@@ -70,7 +74,8 @@ class TextPreprocessing:
         text = self.tokenize_text(text)
         return [word for word in text if word not in self.stops]
 
-    def remove_numbers(self, text):
+    @staticmethod
+    def remove_numbers(text):
         """
         Diese Methode entfernt Zahlen aus dem Text.
         :param text:
@@ -106,7 +111,7 @@ class TextPreprocessing:
         return [word for word in text if word in self.dictionary]
 
     def preprocess_text(self, text, lower_case=True, remove_special_chars=True, remove_numbers=True,
-                        remove_punctuation=True,
+                        remove_punctuation=False,
                         remove_stopwords=True, lemmatization=True, stemming=False, check_valid_word=False):
         """
         Diese Methode führt die Vorverarbeitung auf den Text aus.
@@ -138,6 +143,7 @@ class TextPreprocessing:
 
 
 if __name__ == "__main__":
-    text = 'This error will persist for a long time as it continues to reproduce... The latest reproduction I know is from ENCYCLOPEDIA BRITANNICA ALMANAC 2008 wich states '
+    text = ('This error will persist for a long time as it continues to reproduce... '
+            'The latest reproduction I know is from ENCYCLOPEDIA BRITANNICA ALMANAC 2008 wich states ')
     test = TextPreprocessing()
     print(test.preprocess_text(text))
