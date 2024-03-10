@@ -1,5 +1,4 @@
 import warnings
-
 warnings.filterwarnings('ignore',
                         message="The parameter 'token_pattern' will not be used since 'tokenizer' is not None")
 import pandas as pd
@@ -9,17 +8,34 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 class CorpusAnalyser:
     def __init__(self, corpus: pd.DataFrame, column: str):
         """
-        Initialisiert die CorpusAnalyser Klasse und berechnet die TF-IDF-Matrix für den vorverarbeiteten Korpus.
+        Initialisiert die CorpusAnalyser Klasse, berechnet die TF-IDF-Matrix für den vorverarbeiteten Korpus
+        und erstellt einen invertierten Index für die Token im Korpus.
 
         :param corpus: Ein DataFrame, der die vorverarbeitete Dokumentensammlung enthält (jedes Dokument ist eine Liste von Tokens).
         :param column: Der Spaltenname im DataFrame, der die vorverarbeiteten Dokumente enthält.
         """
         self.corpus = corpus
         self.column = column
-        # Anpassen des Vectorizers, um direkt mit Token-Listen zu arbeiten
-        self.tfidf_vectorizer = TfidfVectorizer(tokenizer=lambda x: x, preprocessor=lambda x: x, lowercase=False)
+        self.inverted_index = self.create_inverted_index()
+
+        # Initialisierung des TfidfVectorizers
+        self.tfidf_vectorizer = TfidfVectorizer()
         self.tfidf_matrix = self.tfidf_vectorizer.fit_transform(corpus[column])
         self.feature_names = self.tfidf_vectorizer.get_feature_names_out()
+
+    def create_inverted_index(self):
+        """
+        Erstellt einen invertierten Index für die Token im Korpus.
+
+        :return: Ein Dictionary, das jedes Token seinem Vorkommen in Dokumenten zuordnet.
+        """
+        inverted_index = {}
+        for i, tokens in enumerate(self.corpus[self.column]):
+            for token in tokens:
+                if token not in inverted_index:
+                    inverted_index[token] = []
+                inverted_index[token].append(i)
+        return inverted_index
 
     def corpus_number_of_texts(self):
         """
@@ -83,33 +99,28 @@ class CorpusAnalyser:
         similar_docs = similar_docs.sort_values(by='cosine_similarity', ascending=False).head(n)
         return similar_docs
 
-    def search_substring(self, substring):
+    def search_word(self, substring):
         """
         Sucht nach einem Substring (Token) in den Texten des Korpus und gibt die Dokumentenindizes und die Positionen zurück.
 
         :param substring: Der zu suchende Substring (Token).
         :return: Ein Dictionary, das jeden Dokumentenindex enthält, in dem der Substring (Token) vorkommt, zusammen mit den Positionen des Substrings (Tokens) in diesem Dokument.
         """
-        results = {}
-        for i, text in enumerate(self.corpus[self.column]):
-            positions = [j for j, token in enumerate(text) if token == substring]
-            if positions:
-                results[i] = positions
-        return results
+        # using the inverted index
+        return self.inverted_index
+
+
 
 
 if __name__ == '__main__':
     # Beispiel-Korpus
-    corpus = pd.DataFrame({'text': [['this', 'is', 'a', 'test'], ['this', 'is', 'another', 'test', 'text'],
-                                    ['this', 'is', 'yet', 'another', 'test', 'text'],
-                                    ['this', 'is', 'a', 'new', 'test']]})
+    corpus = pd.read_csv('../data/train.csv/processed_train.csv')
     # Initialisierung des CorpusAnalyser
-    analyser = CorpusAnalyser(corpus, 'text')
+    analyser = CorpusAnalyser(corpus, 'comment_text')
     # Anzahl der Texte im Korpus
     print("Anzahl Texte in Korpus:", analyser.corpus_number_of_texts())
     # Durchschnittliche Textlänge
     print("Durchschnittliche Anzahl Wörter in den Texten:", analyser.corpus_average_text_length())
     # TF-IDF-Werte für ein bestimmtes Wort
-    print(analyser.get_n_highest_tfidf_ids('new', 2))
-    # Visualisierung der TF-IDF-Matrix
-    print(analyser.get_tfidf_matrix())
+    print(analyser.get_n_highest_tfidf_ids('vandalism', 5))
+    #print(analyser.search_word("vandalism"))
