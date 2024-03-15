@@ -114,7 +114,7 @@ class CorpusAnalyser:
 
 if __name__ == '__main__':
     # Beispiel-Korpus
-    corpus = pd.read_csv('../data/train.csv/processed_train.csv')
+    corpus = pd.read_csv('../data/train/processed_train.csv')
     # Initialisierung des CorpusAnalyser
     analyser = CorpusAnalyser(corpus, 'comment_text')
     # Anzahl der Texte im Korpus

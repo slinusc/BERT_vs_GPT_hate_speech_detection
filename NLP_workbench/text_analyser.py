@@ -1,5 +1,6 @@
 from collections import Counter
 from textblob import TextBlob
+import matplotlib.pyplot as plt
 
 
 class TextAnalyser:
@@ -34,6 +35,11 @@ class TextAnalyser:
         :return: Eine Liste der n häufigsten Wörter und ihre Häufigkeiten.
         """
         word_counts = Counter(text)
+
+        # additional visualization as descending bar chart
+        plt.bar(*zip(*word_counts.most_common(n)))
+        plt.show()
+
         return word_counts.most_common(n)
 
     @staticmethod
@@ -82,12 +88,13 @@ class TextAnalyser:
 
 
 if __name__ == '__main__':
-    text = ["This", "is", "a", "good", "test", "text", ".", "It", "is", "a", "test", "text", "."]
+    text = ["This", "is", "a", "good", "test", "text", ".", "It", "bli", "blu", "blub", "text", "."]
     ta = TextAnalyser()
     print(ta.word_count(text))
     print(ta.search_substring(text, "is"))
-    print(ta.most_common_words(text, 2))
+    print(ta.most_common_words(text, 4))
     print(ta.word_frequency(text, "is"))
     print(ta.average_word_length(text))
     print(ta.sentence_count(text))
     print(ta.sentiment_analysis(text))
+
