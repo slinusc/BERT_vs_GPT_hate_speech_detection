@@ -1,5 +1,6 @@
 import re
 import nltk
+from transformers import BertTokenizer
 
 nltk.download('punkt')
 nltk.download('stopwords')
@@ -9,6 +10,7 @@ nltk.download('words')
 from nltk.corpus import stopwords, words
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer, PorterStemmer
+
 
 
 class TextPreprocessing:
@@ -24,6 +26,7 @@ class TextPreprocessing:
     """
 
     def __init__(self):
+        self.bert_tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
         self.stops = set(stopwords.words('english'))
         self.dictionary = set(words.words())
         self.lemmatizer = WordNetLemmatizer()
@@ -46,6 +49,17 @@ class TextPreprocessing:
         :return:
         """
         return word_tokenize(text)
+
+    def bert_tokenize(self, text):
+        """
+        Diese Methode tokenisiert den Text unter Verwendung des BERT-Tokenizers.
+        :param text: Der zu tokenisierende Text.
+        :return: Eine Liste von BERT-Token-IDs.
+        """
+        # Der BERT-Tokenizer führt die Tokenisierung und die Konvertierung in Token-IDs in einem Schritt durch.
+        # return_tensors='pt' gibt die Token-IDs als PyTorch-Tensoren zurück.
+        # Wenn Sie mit TensorFlow arbeiten, können Sie 'tf' verwenden.
+        return self.bert_tokenizer(text, return_tensors='pt', padding=True, truncation=True)
 
     @staticmethod
     def remove_special_chars(text):
@@ -71,7 +85,6 @@ class TextPreprocessing:
         :param text:
         :return:
         """
-        text = self.tokenize_text(text)
         return [word for word in text if word not in self.stops]
 
     @staticmethod
@@ -111,7 +124,7 @@ class TextPreprocessing:
         return [word for word in text if word in self.dictionary]
 
     def preprocess_text(self, text, lower_case=True, remove_special_chars=True, remove_numbers=True,
-                        remove_punctuation=False,
+                        remove_punctuation=False, nltk_token=True,
                         remove_stopwords=True, lemmatization=True, stemming=False, check_valid_word=False):
         """
         Diese Methode führt die Vorverarbeitung auf den Text aus.
@@ -122,6 +135,7 @@ class TextPreprocessing:
         :param lemmatization:
         :return:
         """
+
         if lower_case:
             text = self.lower_text(text)
         if remove_special_chars:
@@ -130,6 +144,8 @@ class TextPreprocessing:
             text = self.remove_numbers(text)
         if remove_punctuation:
             text = self.remove_punctuation(text)
+        if nltk_token:
+            text = self.tokenize_text(text)
         if remove_stopwords:
             text = self.remove_stopwords(text)
         if lemmatization:
@@ -147,3 +163,4 @@ if __name__ == "__main__":
             'The latest reproduction I know is from ENCYCLOPEDIA BRITANNICA ALMANAC 2008 wich states ')
     test = TextPreprocessing()
     print(test.preprocess_text(text))
+    print(test.bert_tokenize(text))
