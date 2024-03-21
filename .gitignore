@@ -151,6 +151,6 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 .idea/
 
-data/
+hate_speech_detection_pipeline/data/
 
-classification_pipeline/model/
+hate_speech_detection_pipeline/model/
