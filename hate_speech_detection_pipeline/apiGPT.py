@@ -39,5 +39,5 @@ if __name__ == '__main__':
                 "conservatives are Wikipedians too.",
                 "A Bisexual, like a homosexual or a heterosexual, is not defined by sexual activity. "
                 "A person who is actually sexually attracted/aroused by the same sex as well as the opposite sex is bisexual."]
-    responses = chat.batch_create_chats(messages)
+    responses = chat.create_chat(messages[1])
     print(responses)
