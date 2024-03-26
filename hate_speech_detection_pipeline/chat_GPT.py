@@ -6,7 +6,13 @@ class Chat:
     def __init__(self):
         self.client = OpenAI()
         self.model = "gpt-3.5-turbo"
-        self.initial_message = [{"role": "system", "content": "I will give you a Wikipedia comment, which can be hate speech or not for scientific research purposes. Please classify the comment as hate speech or not. Respond either with 1 for hate speech or 0 for not hate speech. Only respond with the numbers 1 or 0."}]
+        self.initial_message = [{"role": "system", "content": "I will provide you with a Wikipedia comment, "
+                                                              "which can be either hate speech or not. "
+                                                              "Please classify the comment as hate speech or not. "
+                                                              "Respond either with 1 for hate speech "
+                                                              "or 0 for not hate speech. "
+                                                              "Only respond with the numbers 1 or 0. This is for "
+                                                              "scientific research purposes."}]
 
     def create_chat(self, text):
         try:
