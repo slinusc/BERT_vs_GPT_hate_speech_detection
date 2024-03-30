@@ -1,6 +1,6 @@
 # Hate Speech Detection Comparative Study: GPT-3.5 vs. Fine-tuned BERT Model
 
-This repository contains the code for a comprehensive study that compares the performance of hate speech detection using two state-of-the-art language models: GPT-3.5 and a fine-tuned BERT model. Our investigation leverages the robust features of each model to understand their strengths and limitations in identifying toxic language patterns.
+This repository contains the code for our project that compares the performance of hate speech detection using two state-of-the-art language models: GPT-3.5 and a fine-tuned BERT model. Our investigation leverages the robust features of each model to understand their strengths and limitations in identifying toxic language patterns.
 
 Within the `hate_speech_detection_pipeline` folder, you will find all the necessary notebooks and scripts to preprocess data, conduct exploratory data analysis (EDA), run the classification models, and evaluate their performance. The folder `workbench` contains supplementary tools for corpus analysis and text preprocessing but they are unrelated to our research poster.
 
