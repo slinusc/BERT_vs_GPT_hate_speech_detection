@@ -9,7 +9,7 @@ The fine-tuning and evaluation are based on the Jigsaw Toxic Comment Classificat
 You can delve into our methodology and findings by exploring the included Jupyter notebooks and Python scripts. The comparative results are comprehensively documented in the `results` directory, providing insights into the practical applications and ethical considerations of automated hate speech detection.
 
 ## Project Structure
-.
+'''
 ├── hate_speech_detection_pipeline
 │   ├── apiGPT.py
 │   ├── classification_evaluation.ipynb
@@ -27,7 +27,7 @@ You can delve into our methodology and findings by exploring the included Jupyte
     ├── text_analyser.py
     └── text_preprocessing.py
 
-
+'''
 ## Citations
 
 The work conducted in this repository is in accordance with the following references, which have been crucial in the development of our models and evaluation metrics:
