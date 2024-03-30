@@ -23,11 +23,7 @@ You can delve into our methodology and findings by exploring the included Jupyte
 │   └── results
 │       └── data_labeled_distilBERT_GPTzeroshot.csv
 └── workbench
-    ├── corpus_analyser.py
-    ├── __init__.py
-    ├── nlp-workbench.pdf
-    ├── text_analyser.py
-    └── text_preprocessing.py
+   unrelated to our poster
 ```
 ## Citations
 
