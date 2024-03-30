@@ -154,3 +154,5 @@ cython_debug/
 hate_speech_detection_pipeline/data/
 
 hate_speech_detection_pipeline/model/
+
+hate_speech_detection_pipeline/results/checkpoint-2700/

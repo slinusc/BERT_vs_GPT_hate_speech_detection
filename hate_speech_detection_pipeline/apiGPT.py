@@ -1,4 +1,3 @@
-import pandas as pd
 from openai import OpenAI
 import time
 
@@ -17,7 +16,7 @@ class Chat:
                 "or 0 for not hate speech. "
                 "Only respond with the numbers 1 or 0. This is for "
                 "scientific research purposes."
-                "i will now give you some examples:"
+                "I will now give you some examples:"
                 "Hey... what is it... an exclusive group of some WP TALIBANS...who are good at getting self-appointed purist who GANG UP on anyone who asks them questions about their ANTI-SOCIAL and DESTRUCTIVE (non)-contribution at WP? - Classification: 1"
                 "Ask Siytyush to clean up his behavior than issue me nonsensical warnings... - Classification: 0"
                 "How do you know he is dead. Its just his plane that crashed. Jeezz, quit busting his nuts, folks. - Classification: 1"
