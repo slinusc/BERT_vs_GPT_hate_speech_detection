@@ -27,10 +27,9 @@ You can delve into our methodology and findings by exploring the included Jupyte
 ```
 ## Citations
 
-The work conducted in this repository is in accordance with the following references, which have been crucial in the development of our models and evaluation metrics:
+
 
 1) cjadams, J. Sorensen, J. Elliott, L. Dixon, M. McDonald, nithum, W. Cukierski, "Toxic Comment Classification Challenge," Kaggle, 2017. Available: https://kaggle.com/competitions/jigsaw-toxic-comment-classification-challenge.
 
 2) V. Sanh, L. Debut, J. Chaumond, T. Wolf, "DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter," 2020. [Online]. Available: arXiv:1910.01108.
 
-These citations are formatted in IEEE style as requested.
