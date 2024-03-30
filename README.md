@@ -6,7 +6,7 @@ Within the `hate_speech_detection_pipeline` folder, you will find all the necess
 
 The fine-tuning and evaluation are based on the Jigsaw Toxic Comment Classification Challenge dataset and the distilled version of BERT (DistilBERT), aimed at being smaller, faster, and more resource-efficient while retaining BERT's capabilities.
 
-You can delve into our methodology and findings by exploring the included Jupyter notebooks and Python scripts. The comparative results are stored in the `results` directory.
+You can delve into our methodology and findings by exploring the included Jupyter notebooks and Python scripts. The results are stored in the `results` directory.
 
 ## Project Structure
 
