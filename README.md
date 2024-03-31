@@ -12,18 +12,17 @@ You can look into our methodology and findings by exploring the included Jupyter
 
 ```plaintext
 .
-├── hate_speech_detection_pipeline
-│   ├── apiGPT.py
-│   ├── classification_evaluation.ipynb
-│   ├── data_preprocessing.ipynb
-│   ├── distilBERT.py
-│   ├── eda.ipynb
-│   ├── fine_tune_distilBERT.ipynb
-│   ├── GPT_classification.ipynb
-│   └── results
-│       └── data_labeled_distilBERT_GPTzeroshot.csv
-└── workbench
-   unrelated to our poster
+└── hate_speech_detection_pipeline
+   ├── apiGPT.py
+   ├── classification_evaluation.ipynb
+   ├── data_preprocessing.ipynb
+   ├── distilBERT.py
+   ├── eda.ipynb
+   ├── fine_tune_distilBERT.ipynb
+   ├── GPT_classification.ipynb
+   └── results
+       └── data_labeled_distilBERT_GPTzeroshot_GPT_viewshot.csv
+
 ```
 ## Citations
 
