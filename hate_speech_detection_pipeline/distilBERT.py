@@ -2,7 +2,7 @@ from transformers import DistilBertTokenizer, DistilBertForSequenceClassificatio
 import torch
 
 
-class BERTModelClassificator:
+class DistilBERTModelClassificator:
     def __init__(self, model_path):
         """
         Initialisiert die ModelPredictor Klasse mit dem angegebenen Modell.
@@ -40,5 +40,5 @@ class BERTModelClassificator:
         return predicted.item()
 
 if __name__ == "__main__":
-    model = BERTModelclassificator("model/model_distil.pth")
+    model = DistilBERTModelClassificator("model/model_distil.pth")
     print(model.predict_label("I hate you!"))
