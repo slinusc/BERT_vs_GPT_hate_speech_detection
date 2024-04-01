@@ -33,3 +33,5 @@ You can look into our methodology and findings by exploring the included Jupyter
 
 2) V. Sanh, L. Debut, J. Chaumond, T. Wolf, "DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter," 2020. [Online]. Available: arXiv:1910.01108.
 
+3) J.Devlin, M. Chang , K. Lee, K. Toutanova, "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+   2018, [Online]. Available: arXiv:1810.04805.
