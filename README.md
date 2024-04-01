@@ -17,11 +17,12 @@ You can look into our methodology and findings by exploring the included Jupyter
    ├── classification_evaluation.ipynb
    ├── data_preprocessing.ipynb
    ├── distilBERT.py
+   ├── BERT.py
    ├── eda.ipynb
    ├── fine_tune_distilBERT.ipynb
-   ├── GPT_classification.ipynb
+   ├── classification_evaluation_pipeline.ipynb
    └── results
-       └── data_labeled_distilBERT_GPTzeroshot_GPT_viewshot.csv
+       └── data_labeled_distilBERT_GPTzeroshot_GPT_viewshot_BERT.csv
 
 ```
 ## Citations
