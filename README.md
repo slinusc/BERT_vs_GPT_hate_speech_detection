@@ -4,7 +4,7 @@ This repository contains the code for our project that compares the performance 
 
 Within the `hate_speech_detection_pipeline` folder, you will find all the necessary notebooks and scripts to preprocess data, conduct exploratory data analysis (EDA), run the classification models, and evaluate their performance. The folder `workbench` contains supplementary tools for corpus analysis and text preprocessing but they are unrelated to our research poster.
 
-The fine-tuning and evaluation are based on the Jigsaw Toxic Comment Classification Challenge dataset and the distilled version of BERT (DistilBERT), aimed at being smaller, faster, and more resource-efficient while retaining BERT's capabilities.
+We conducted fine-tuning on both the DistilBERT and BERT models using the Jigsaw Toxic Comment Classification Challenge dataset. DistilBERT, a distilled version of BERT, is designed to be smaller, faster, and more resource-efficient while retaining much of BERT's performance capabilities. However, after extensive evaluation, we opted for the BERT model for our final implementation due to its marginally superior performance in terms of accuracy and F1 score. Although DistilBERT showed promise with its faster inference times and reduced computational requirements, the full-sized BERT model provided slightly better classification results, making it the preferred choice for our use case.
 
 You can look into our methodology and findings by exploring the included Jupyter notebooks and Python scripts. The results are stored in the `results` directory.
 
