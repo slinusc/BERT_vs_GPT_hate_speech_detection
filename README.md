@@ -22,7 +22,7 @@ You can look into our methodology and findings by exploring the included Jupyter
    ├── fine_tune_distilBERT.ipynb
    ├── classification_evaluation_pipeline.ipynb
    └── results
-       └── data_labeled_distilBERT_GPTzeroshot_GPT_viewshot_BERT.csv
+       └── data_labeled_distilBERT_GPTzeroshot_GPT_fewshot_BERT.csv
 
 ```
 ## Citations
